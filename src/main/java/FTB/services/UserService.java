@@ -1,11 +1,11 @@
 package FTB.services;
 
+import FTB.model.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import FTB.exceptions.CouldNotWriteUsersException;
 import FTB.exceptions.UsernameAlreadyExistsException;
-import FTB.model.User;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -33,9 +33,9 @@ public class UserService {
         });
     }
 
-    public static void addUser(String username, String password) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
-        users.add(new User(username, encodePassword(username, password)));
+        users.add(new User(username, encodePassword(username, password), role));
         persistUsers();
     }
 
