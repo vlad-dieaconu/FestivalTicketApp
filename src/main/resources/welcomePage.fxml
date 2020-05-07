@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="nume" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="506.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane id="nume" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="506.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.WelcomePageController">
 
     <children>
         <Label layoutX="356.0" layoutY="59.0" text="Welcome !">
@@ -23,7 +23,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Button>
-        <Button layoutX="388.0" layoutY="310.0" mnemonicParsing="false" text="Register">
+        <Button layoutX="388.0" layoutY="310.0" mnemonicParsing="false" onAction="#changeScene2" text="Register">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -44,4 +44,3 @@
 
     </children>
 </AnchorPane>
-
