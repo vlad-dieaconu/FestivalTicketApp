@@ -23,7 +23,7 @@ public class WelcomePageController implements Initializable {
 
     public void changeScene(ActionEvent event) throws IOException {
 
-        Parent view = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
         Scene view2 = new Scene(view);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -33,7 +33,7 @@ public class WelcomePageController implements Initializable {
     }
 
     public void changeScene2(ActionEvent event) throws IOException{
-        Parent view = FXMLLoader.load(getClass().getResource("Registration.fxml"));
+        Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("Registration.fxml"));
         Scene view2 = new Scene(view);
 
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -41,4 +41,5 @@ public class WelcomePageController implements Initializable {
         window.setScene(view2);
         window.show();
     }
+
 }
