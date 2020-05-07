@@ -1,11 +1,12 @@
 package FTB.services;
 
-import FTB.model.User;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import FTB.exceptions.*;
 import org.apache.commons.io.FileUtils;
-import FTB.exceptions.CouldNotWriteUsersException;
-import FTB.exceptions.UsernameAlreadyExistsException;
+import FTB.model.User;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -29,21 +30,57 @@ public class UserService {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-        users = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>() {
-        });
+        users = objectMapper.readValue(USERS_PATH.toFile(),
+                new TypeReference<List<User>>() {
+                });
     }
 
-    public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password) throws UsernameAlreadyExistsException,EmptyPassword,UserEmpty {
         checkUserDoesNotAlreadyExist(username);
-        users.add(new User(username, encodePassword(username, password), role));
+        checkUserIsNotEmpty(username);
+        checkPassIsNotEmpty(password);
+        users.add(new User(username, encodePassword(username, password), "client"));
         persistUsers();
     }
 
-    private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
+    public static void checkUser(String username,String password) throws EmptyPassword,UserEmpty, InvalidPassword,InvalidUsername{
+        checkUserIsNotEmpty(username);
+        checkPassIsNotEmpty(password);
+        checkUsername(username,password);
+    }
+
+    private static void checkUsername(String username, String password) throws InvalidPassword,InvalidUsername{
+        int ok=0;
+        for (User user : users) {
+            if (Objects.equals(username, user.getUsername()))
+            {ok=1;
+
+                if(Objects.equals(encodePassword(username,password), user.getPassword()))
+                    ok=2;
+            }
+        }
+        if(ok==0)
+            throw new InvalidUsername();
+        if(ok==1)
+            throw new InvalidPassword();
+
+
+    }
+
+    private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException{
         for (User user : users) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+    private static void checkUserIsNotEmpty(String username)throws UserEmpty {
+        if(Objects.equals(username, ""))
+            throw new UserEmpty(username);
+    }
+
+    private static void checkPassIsNotEmpty(String password)throws EmptyPassword {
+        if(Objects.equals(password,""))
+            throw new EmptyPassword(password);
     }
 
     private static void persistUsers() {
@@ -75,6 +112,5 @@ public class UserService {
         }
         return md;
     }
-
 
 }

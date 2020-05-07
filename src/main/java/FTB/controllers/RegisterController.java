@@ -1,5 +1,7 @@
 package FTB.controllers;
 
+import FTB.exceptions.EmptyPassword;
+import FTB.exceptions.UserEmpty;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.ChoiceBox;
@@ -29,10 +31,14 @@ public class RegisterController {
     @FXML
     public void handleRegisterAction() {
         try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+            UserService.addUser(usernameField.getText(), passwordField.getText());
             registrationMessage.setText("Account created successfully!");
         } catch (UsernameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
+        } catch (EmptyPassword emptyPassword) {
+            emptyPassword.printStackTrace();
+        } catch (UserEmpty userEmpty) {
+            userEmpty.printStackTrace();
         }
     }
 }

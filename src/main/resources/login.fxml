@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="326.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login">
+<AnchorPane prefHeight="326.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller= "FTB.controllers.LoginController">
     <children>
         <TextField fx:id="user_input" layoutX="226.0" layoutY="115.0" promptText="Username" />
 
