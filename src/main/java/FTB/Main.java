@@ -20,7 +20,7 @@ public class Main extends Application {
         UserService.loadUsersFromFile();
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("welcomePage.fxml"));
-        primaryStage.setTitle("Registration Example");
+        primaryStage.setTitle("Festival Tickets App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
