@@ -6,6 +6,7 @@ import FTB.exceptions.InvalidPassword;
 import FTB.exceptions.InvalidUsername;
 import FTB.exceptions.UserEmpty;
 import FTB.services.UserService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,7 +20,6 @@ import javafx.scene.text.Text;
 import FTB.model.User;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class LoginController {
@@ -31,7 +31,7 @@ public class LoginController {
     public TextField user_input;
 
     @FXML
-    public void handleLoginButtonAction() throws InvalidPassword, EmptyPassword, UserEmpty, InvalidUsername {
+    public void handleLoginButtonAction(ActionEvent event) throws InvalidPassword, EmptyPassword, UserEmpty, InvalidUsername, IOException {
         try {
             UserService.checkUser(user_input.getText(), passwordField.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION,"Login reusit !", ButtonType.OK);
@@ -39,7 +39,26 @@ public class LoginController {
             if(alert.getResult()==ButtonType.OK)
                 alert.close();
 
-        } catch (InvalidUsername e) {
+            if(user_input.getText().equals("admin") && passwordField.getText().equals("admin")){
+
+                Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("adminView.fxml"));
+                Scene view2 = new Scene(view);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(view2);
+                window.show();
+            }
+            else{
+                Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("userView.fxml"));
+                Scene view2 = new Scene(view);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(view2);
+                window.show();
+            }
+
+
+
+
+    } catch (InvalidUsername e) {
             Alert alert = new Alert(Alert.AlertType.WARNING,e.getMessage(), ButtonType.OK);
             alert.showAndWait();
             if(alert.getResult()==ButtonType.OK)
@@ -61,6 +80,15 @@ public class LoginController {
             if(alert.getResult()==ButtonType.OK)
                 alert.close();
         }
+    }
+    public void backToWelcome(ActionEvent event) throws IOException{
+        Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("welcomePage.fxml"));
+        Scene view2 = new Scene(view);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(view2);
+        window.show();
     }
 
 
