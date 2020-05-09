@@ -14,7 +14,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.accBalance=Math.random()*200;
+        this.accBalance=Math.random()*800;
     }
 
     public String getUsername() {
