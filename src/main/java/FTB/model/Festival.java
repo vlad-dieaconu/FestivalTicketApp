@@ -8,6 +8,10 @@ public class Festival {
     private String name;
     private String details;
 
+    public Festival(){
+
+    }
+
     public Festival(String name, String details) {
         this.name = name;
         this.details = details;

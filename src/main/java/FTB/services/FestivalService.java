@@ -2,6 +2,8 @@ package FTB.services;
 
 
 import FTB.model.Festival;
+import FTB.model.User;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import FTB.exceptions.*;
 import org.apache.commons.io.FileUtils;
@@ -15,7 +17,7 @@ import java.util.Objects;
 
 public class FestivalService {
 
-    private static List<Festival> festivals=new ArrayList<Festival>();
+    private static List<Festival> festivals;
     private static final Path FESTIVALS_PATH = FestivalFileService.getPathToFile("config", "festival.json");
 
     public static void loadFestivalsFromFile() throws IOException {
@@ -23,10 +25,16 @@ public class FestivalService {
         if (!Files.exists(FESTIVALS_PATH)) {
             FileUtils.copyURLToFile(FestivalService.class.getClassLoader().getResource("festivals.json"), FESTIVALS_PATH.toFile());
         }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        festivals = objectMapper.readValue(FESTIVALS_PATH.toFile(),
+                new TypeReference<List<Festival>>() {
+                });
 }
 
     public static void addFestivals(String name, String details){
-        System.out.println("AM INTRAT");
+
         festivals.add(new Festival(name,details));
         persistFestivals();
     }
