@@ -1,5 +1,7 @@
 package FTB;
 
+import FTB.model.Festival;
+import FTB.services.FestivalService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         UserService.loadUsersFromFile();
+        FestivalService.loadFestivalsFromFile();
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("welcomePage.fxml"));
         primaryStage.setTitle("Festival Tickets App");
