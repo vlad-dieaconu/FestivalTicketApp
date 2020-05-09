@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.AdminViewController">
+   <children>
+      <Label layoutX="234.0" layoutY="29.0" prefHeight="27.0" prefWidth="132.0" text="Login as admin">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Button layoutX="108.0" layoutY="121.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="141.0" text="Edit or add details" />
+      <Button layoutX="108.0" layoutY="192.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="141.0" text="Buyers List" />
+      <Button layoutX="336.0" layoutY="121.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="141.0" text="View festivals" />
+      <Button onAction="#backTologin" layoutX="336.0" layoutY="192.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="141.0" text="Back to Login" />
+   </children>
+</AnchorPane>
