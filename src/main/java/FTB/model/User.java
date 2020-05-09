@@ -1,9 +1,11 @@
 package FTB.model;
+
 public class User {
 
     private String username;
     private String password;
     private String role;
+    private double accBalance;
 
     public User() {
     }
@@ -12,6 +14,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.accBalance=Math.random()*200;
     }
 
     public String getUsername() {
@@ -28,6 +31,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public double getAccBalance(){
+        return accBalance;
     }
 
     public String getRole() {
@@ -60,9 +67,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
+        return "User{" +
                 "username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        '}';
+                ", password='" + password + '\'' +
+                ", accBalance=" + accBalance +
+                '}';
     }
 }
