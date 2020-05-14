@@ -20,7 +20,7 @@ import java.util.Objects;
 public class UserService {
 
     private static List<User> users;
-    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+    public static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
 
     public static void loadUsersFromFile() throws IOException {
 
@@ -35,11 +35,11 @@ public class UserService {
                 });
     }
 
-    public static void addUser(String username, String password) throws UsernameAlreadyExistsException,EmptyPassword,UserEmpty {
+    public static void addUser(String username, String password, String email, String age) throws UsernameAlreadyExistsException,EmptyPassword,UserEmpty {
         checkUserDoesNotAlreadyExist(username);
         checkUserIsNotEmpty(username);
         checkPassIsNotEmpty(password);
-        users.add(new User(username, encodePassword(username, password), "client"));
+        users.add(new User(username, encodePassword(username, password), "client",age,email));
         persistUsers();
     }
 
