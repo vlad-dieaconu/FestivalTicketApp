@@ -35,11 +35,11 @@ public class UserService {
                 });
     }
 
-    public static void addUser(String username, String password) throws UsernameAlreadyExistsException,EmptyPassword,UserEmpty {
+    public static void addUser(String username, String password, String email, String age) throws UsernameAlreadyExistsException,EmptyPassword,UserEmpty {
         checkUserDoesNotAlreadyExist(username);
         checkUserIsNotEmpty(username);
         checkPassIsNotEmpty(password);
-        users.add(new User(username, encodePassword(username, password), "client"));
+        users.add(new User(username, encodePassword(username, password), "client",age,email));
         persistUsers();
     }
 
