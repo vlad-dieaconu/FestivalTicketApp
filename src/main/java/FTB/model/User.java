@@ -1,6 +1,10 @@
 package FTB.model;
 
-public class User {
+import javafx.collections.ObservableList;
+
+import java.util.Observable;
+
+public class User extends Observable {
 
     private String username;
     private String password;
@@ -10,14 +14,14 @@ public class User {
     private String email;
 
 
-    public User() {
+    public User(){
     }
 
     public User(String username, String password, String role, String age, String email) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.accBalance=Math.random()*800;
+        this.accBalance=Math.random()*1200;
         this.age=age;
         this.email=email;
     }
