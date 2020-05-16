@@ -18,7 +18,7 @@ import java.util.Objects;
 public class FestivalService {
 
     private static List<Festival> festivals;
-    private static final Path FESTIVALS_PATH = FestivalFileService.getPathToFile("config", "festival.json");
+    public static final Path FESTIVALS_PATH = FestivalFileService.getPathToFile("config", "festival.json");
 
     public static void loadFestivalsFromFile() throws IOException {
 
