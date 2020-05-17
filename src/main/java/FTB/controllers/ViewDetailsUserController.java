@@ -1,12 +1,11 @@
 package FTB.controllers;
 
 import FTB.model.Festival;
-import com.fasterxml.jackson.core.JsonParser;
+import FTB.services.UserService;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,23 +19,29 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.parser.JSONParser;
-
-import javax.swing.*;
-import java.io.*;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import FTB.controllers.LoginController;
 
 
 import static FTB.services.FestivalService.FESTIVALS_PATH;
 import static FTB.services.UserService.USERS_PATH;
+import static FTB.services.UserService.persistUsers;
 
-public class ViewDetailsUserController {
+import FTB.model.*;
+import org.apache.commons.io.FileUtils;
+
+
+public class ViewDetailsUserController extends User{
 
     @FXML
     private ListView<String> listView;
 
+    LoginController l = new LoginController();
+    ArrayList<String> ord=new ArrayList<String>();
+
+    Button buyButton;
     private static List<Festival> festivals;
 
     public void initialize() throws IOException {
@@ -49,7 +54,6 @@ public class ViewDetailsUserController {
 
     public void handleMouseClick() throws IOException {
         Stage popupWindow;
-        Parent root;
         readJsonData();
         for(int i=0;i<festivals.size();i++) {
             if(listView.getSelectionModel().getSelectedItem().equals(festivals.get(i).getFestivalName())){
@@ -59,7 +63,14 @@ public class ViewDetailsUserController {
                 popupWindow.setTitle("More details");
                 Label label1= new Label(festivals.get(i).getFestivalDetails());
                 Button popupButton = new Button("Back to festivals");
-                Button buyButton = new Button("BUY");
+                buyButton = new Button("BUY");
+                buyButton.setOnAction(event -> {
+                    try {
+                        addOrder();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
                 Stage finalPopupWindow = popupWindow;
                 popupButton.setOnAction(e -> finalPopupWindow.close());
                 VBox layout= new VBox(10);
@@ -83,6 +94,40 @@ public class ViewDetailsUserController {
                 });
     }
 
+    public void addOrder() throws IOException {
+
+        String s;
+        s=listView.getSelectionModel().getSelectedItem();
+
+        System.out.println("click on buy " + s);
+
+        List<User> useri;
+        ArrayList<User> users2 = new ArrayList<User>();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        useri = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>(){});
+
+        for(User item : useri ){
+            users2.add(item);
+        }
+        for(User item2:users2){
+            if(item2.getUsername().equals(LoginController.getUser())){
+
+                ord=item2.getOrders();
+                ord.add(s);
+                item2.nrOrders++;
+                item2.setOrders(ord);
+
+            }
+        }
+        FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+        ObjectMapper objMap = new ObjectMapper();
+        objMap.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(), users2);
+
+//        System.out.println(ord);
+    }
+
+
     public void back(ActionEvent event) throws IOException {
 
         Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("userView.fxml"));
@@ -95,6 +140,8 @@ public class ViewDetailsUserController {
     }
 
     }
+
+
 
 
 
