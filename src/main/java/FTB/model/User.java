@@ -1,11 +1,15 @@
 package FTB.model;
 
+import java.util.ArrayList;
+
 public class User {
 
     private String username;
     private String password;
     private String role;
     private double accBalance;
+    public ArrayList<String> orders=new ArrayList<String>();
+    public int nrOrders;
 
     public User() {
     }
@@ -45,6 +49,14 @@ public class User {
         this.role = role;
     }
 
+    public void setOrders(ArrayList<String> orders) {
+        this.orders = orders;
+    }
+
+    public ArrayList<String> getOrders() {
+        return orders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,7 +82,9 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 ", accBalance=" + accBalance +
+                ", orders=" + orders +
                 '}';
     }
 }
