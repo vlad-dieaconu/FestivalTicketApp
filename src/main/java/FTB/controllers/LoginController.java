@@ -30,6 +30,8 @@ public class LoginController {
     @FXML
     public TextField user_input;
 
+    public static String user;
+
     @FXML
     public void handleLoginButtonAction(ActionEvent event) throws InvalidPassword, EmptyPassword, UserEmpty, InvalidUsername, IOException {
         try {
@@ -54,6 +56,8 @@ public class LoginController {
                 window.setScene(view2);
                 window.show();
             }
+
+            user = user_input.getText();
 
 
 
@@ -80,6 +84,7 @@ public class LoginController {
             if(alert.getResult()==ButtonType.OK)
                 alert.close();
         }
+
     }
     public void backToWelcome(ActionEvent event) throws IOException{
         Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("welcomePage.fxml"));
@@ -89,6 +94,10 @@ public class LoginController {
 
         window.setScene(view2);
         window.show();
+    }
+
+    public static String getUser(){
+        return user;
     }
 
 
