@@ -31,4 +31,14 @@ public class UserViewController {
         window.show();
     }
 
+    public void goToViewOrders(ActionEvent event) throws IOException {
+        Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("ordersView.fxml"));
+        Scene view2 = new Scene(view);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(view2);
+        window.show();
+    }
+
 }
