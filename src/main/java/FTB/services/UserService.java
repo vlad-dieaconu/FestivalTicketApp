@@ -39,7 +39,7 @@ public class UserService {
         checkUserDoesNotAlreadyExist(username);
         checkUserIsNotEmpty(username);
         checkPassIsNotEmpty(password);
-        users.add(new User(username, encodePassword(username, password), "client",age,email));
+        users.add(new User(username, encodePassword(username, password), "client",email,age));
         persistUsers();
     }
 
