@@ -10,7 +10,7 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Button layoutX="249.0" layoutY="294.0" mnemonicParsing="false" text="Go to orders" />
+      <Button layoutX="249.0" layoutY="294.0" mnemonicParsing="false" onAction="#goToViewOrders" text="Go to orders" />
       <Button layoutX="249.0" layoutY="160.0" mnemonicParsing="false" onAction="#goToViewDetails" text="View details" />
       <Label layoutX="191.0" layoutY="126.0" prefHeight="17.0" prefWidth="198.0" text="Get the best offers for our festivals">
          <font>
