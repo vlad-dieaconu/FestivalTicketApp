@@ -27,7 +27,7 @@ import FTB.controllers.LoginController;
 
 import static FTB.services.FestivalService.FESTIVALS_PATH;
 import static FTB.services.UserService.USERS_PATH;
-import static FTB.services.UserService.persistUsers;
+
 
 import FTB.model.*;
 import org.apache.commons.io.FileUtils;

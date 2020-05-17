@@ -10,15 +10,19 @@ public class User {
     private double accBalance;
     public ArrayList<String> orders=new ArrayList<String>();
     public int nrOrders;
+    private String email;
+    private String age;
 
     public User() {
     }
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, String role,String email,String age) {
         this.username = username;
         this.password = password;
         this.role = role;
         this.accBalance=Math.random()*800;
+        this.email=email;
+        this.age=age;
     }
 
     public String getUsername() {
@@ -55,6 +59,22 @@ public class User {
 
     public ArrayList<String> getOrders() {
         return orders;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     @Override
