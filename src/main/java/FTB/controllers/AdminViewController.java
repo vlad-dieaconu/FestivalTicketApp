@@ -44,6 +44,29 @@ public class AdminViewController {
         window.show();
     }
 
+    public void viewCustomers(ActionEvent event) throws IOException {
+
+        Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("customersList.fxml"));
+        Scene view2 = new Scene(view);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(view2);
+        window.show();
+    }
+
+    public void goToEdit(ActionEvent event) throws IOException {
+
+        Parent view = FXMLLoader.load(getClass().getClassLoader().getResource("editFestivalDetails.fxml"));
+        Scene view2 = new Scene(view);
+
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(view2);
+        window.show();
+    }
+
+
 
 
 
