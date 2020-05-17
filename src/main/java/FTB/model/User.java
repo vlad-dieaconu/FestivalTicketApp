@@ -1,29 +1,28 @@
 package FTB.model;
 
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
 
-import java.util.Observable;
-
-public class User extends Observable {
+public class User {
 
     private String username;
     private String password;
     private String role;
     private double accBalance;
-    private String age;
+    public ArrayList<String> orders=new ArrayList<String>();
+    public int nrOrders;
     private String email;
+    private String age;
 
-
-    public User(){
+    public User() {
     }
 
-    public User(String username, String password, String role, String age, String email) {
+    public User(String username, String password, String role,String email,String age) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.accBalance=Math.random()*1200;
-        this.age=age;
+        this.accBalance=Math.random()*800;
         this.email=email;
+        this.age=age;
     }
 
     public String getUsername() {
@@ -54,12 +53,12 @@ public class User extends Observable {
         this.role = role;
     }
 
-    public String getAge() {
-        return age;
+    public void setOrders(ArrayList<String> orders) {
+        this.orders = orders;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public ArrayList<String> getOrders() {
+        return orders;
     }
 
     public String getEmail() {
@@ -68,6 +67,14 @@ public class User extends Observable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 
     @Override
@@ -95,9 +102,9 @@ public class User extends Observable {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 ", accBalance=" + accBalance +
-                ", age=" + age +
-                ", email='" + email + '\'' +
+                ", orders=" + orders +
                 '}';
     }
 }
