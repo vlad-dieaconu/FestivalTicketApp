@@ -45,6 +45,10 @@ public class User {
         return accBalance;
     }
 
+    public void setAccBalance(double accBalance) {
+        this.accBalance = accBalance;
+    }
+
     public String getRole() {
         return role;
     }
@@ -77,6 +81,10 @@ public class User {
         this.age = age;
     }
 
+    public int getNrOrders() {
+        return nrOrders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,4 +115,11 @@ public class User {
                 ", orders=" + orders +
                 '}';
     }
+
+    public String getCurrentOrder(int i){
+        String s=" ";
+        s+=orders.get(i);
+        return s;
+    }
+
 }
