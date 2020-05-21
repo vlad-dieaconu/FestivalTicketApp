@@ -13,9 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -65,12 +63,15 @@ public class ViewDetailsUserController extends User{
                 Button popupButton = new Button("Back to festivals");
                 buyButton = new Button("BUY");
                 buyButton.setOnAction(event -> {
+
                     try {
                         addOrder();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 });
+
+
                 Stage finalPopupWindow = popupWindow;
                 popupButton.setOnAction(e -> finalPopupWindow.close());
                 VBox layout= new VBox(10);
@@ -96,6 +97,7 @@ public class ViewDetailsUserController extends User{
 
     public void addOrder() throws IOException {
 
+
         String s;
         s=listView.getSelectionModel().getSelectedItem();
 
@@ -112,14 +114,25 @@ public class ViewDetailsUserController extends User{
         }
         for(User item2:users2){
             if(item2.getUsername().equals(LoginController.getUser())){
+                if(item2.getAccBalance()>=100) {
+                    ord = item2.getOrders();
+                    ord.add(s);
+                    item2.nrOrders++;
+                    item2.setOrders(ord);
+                    item2.setAccBalance(item2.getAccBalance()-100);
+                    if(item2.getNrOrders()==5){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION,"No more !", ButtonType.OK);
+                        alert.showAndWait();
+                    }
 
-                ord=item2.getOrders();
-                ord.add(s);
-                item2.nrOrders++;
-                item2.setOrders(ord);
-
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION,"Not enough money !", ButtonType.OK);
+                    alert.showAndWait();
+                }
             }
         }
+
         FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
         ObjectMapper objMap = new ObjectMapper();
         objMap.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(), users2);
