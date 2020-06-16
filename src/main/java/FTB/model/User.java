@@ -9,6 +9,8 @@ public class User {
     private String role;
     private double accBalance;
     public ArrayList<String> orders=new ArrayList<String>();
+    public ArrayList<Integer> ordersApproved = new ArrayList<Integer>(); //0 ne vazut //1 deny /2 accept
+
     public int nrOrders;
     private String email;
     private String age;
@@ -23,6 +25,9 @@ public class User {
         this.accBalance=Math.random()*800;
         this.email=email;
         this.age=age;
+
+
+
     }
 
     public String getUsername() {
@@ -85,6 +90,14 @@ public class User {
         return nrOrders;
     }
 
+    public ArrayList<Integer> getOrdersApproved() {
+        return ordersApproved;
+    }
+
+    public void setOrdersApproved(ArrayList<Integer> ordersApproved) {
+        this.ordersApproved = ordersApproved;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,7 +126,35 @@ public class User {
                 ", role='" + role + '\'' +
                 ", accBalance=" + accBalance +
                 ", orders=" + orders +
+                ", ordersApproved=" + ordersApproved +
+                ", email='" + email + '\'' +
+                ", age='" + age + '\'' +
                 '}';
+    }
+
+    public void setApproved(int x){
+
+        for(int i=0;i<ordersApproved.size();i++) {
+            {
+                if(x==i){
+                    this.ordersApproved.set(i,2);
+                }
+
+
+            }
+        }
+    }
+    public void setDeny(int x){
+
+        for(int i=0;i<ordersApproved.size();i++) {
+            {
+                if(x==i){
+                    this.ordersApproved.set(i,1);
+                }
+
+
+            }
+        }
     }
 
     public String getCurrentOrder(int i){
