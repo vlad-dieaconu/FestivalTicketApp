@@ -2,6 +2,7 @@ package FTB.controllers;
 
 
 import FTB.model.User;
+import FTB.services.UserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
@@ -17,12 +18,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,6 +38,8 @@ public class CustomerListController {
     private ListView<String> list;
 
     private static List<User> users;
+
+    ListView listView = new ListView();
 
 
 
@@ -48,34 +54,110 @@ public class CustomerListController {
 
 
     public void handleMouseClick() throws IOException {
-        Stage popupWindow;
+        Stage popupWindow=new Stage();
         readJsonData();
         for(User item : users ){
             if(list.getSelectionModel().getSelectedItem().equals(item.getUsername())){
-                popupWindow = new Stage();
                 popupWindow.initModality(Modality.APPLICATION_MODAL);
-                popupWindow.setTitle("Users Orders");
-                ListView listView = new ListView();
+                popupWindow.setTitle("User Orders");
+
 
                 listView.setItems(init());
-              //  listView.setEditable(true);
-
-                //listView.setCellFactory(TextFieldListCell.forListView());
-
-
 
                 Button popupButton = new Button("Back to users list");
                 Stage finalPopupWindow = popupWindow;
-                popupButton.setOnAction(e -> finalPopupWindow.close());
+                popupButton.setOnAction(e->finalPopupWindow.close());
 
-                VBox layout= new VBox(20);
-                layout.getChildren().addAll(listView, popupButton);
+                VBox layout = new VBox(20);
+
+
+                HBox hbox = new HBox(10);
+                Button allowButton = new Button("Allow");
+                Button denyButton = new Button("Deny");
+
+                allowButton.setOnAction(e->{
+                    try {
+                        accept();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                });
+                denyButton.setOnAction(e->{
+                    try {
+                        deny();
+                    } catch (IOException ioException) {
+                        ioException.printStackTrace();
+                    }
+                });
+
+                hbox.getChildren().addAll(popupButton, allowButton, denyButton);
+
+                layout.getChildren().addAll(listView, hbox);
+
                 layout.setAlignment(Pos.CENTER);
-                Scene scene1= new Scene(layout);
+                Scene scene1 = new Scene(layout);
+
                 popupWindow.setScene(scene1);
                 popupWindow.showAndWait();
                 }
         }
+     }
+
+
+    public void accept() throws IOException {
+
+        List<User> useri;
+        ArrayList<User> users2 = new ArrayList<User>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        useri = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>(){});
+
+        for(User item : useri ){
+            users2.add(item);
+        }
+
+        for(User item2 : users2){
+            if(list.getSelectionModel().getSelectedItem().equals(item2.getUsername())) {
+
+                int index;
+                index = listView.getSelectionModel().getSelectedIndex();
+                item2.setApproved(index);
+                System.out.println(item2.getOrdersApproved());
+
+
+            }
+        }
+
+        FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+        ObjectMapper objMap = new ObjectMapper();
+        objMap.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(), users2);
+
+    }
+
+     public void deny() throws IOException {
+
+         List<User> useri;
+         ArrayList<User> users2 = new ArrayList<User>();
+         ObjectMapper objectMapper = new ObjectMapper();
+         useri = objectMapper.readValue(USERS_PATH.toFile(), new TypeReference<List<User>>(){});
+
+         for(User item : useri ){
+             users2.add(item);
+         }
+
+         for(User item2 : users2){
+             if(list.getSelectionModel().getSelectedItem().equals(item2.getUsername())) {
+
+                 int index;
+                 index = listView.getSelectionModel().getSelectedIndex();
+                 item2.setDeny(index);
+                 System.out.println(item2.getOrdersApproved());
+
+
+             }
+         }
+         FileUtils.copyURLToFile(UserService.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+         ObjectMapper objMap = new ObjectMapper();
+         objMap.writerWithDefaultPrettyPrinter().writeValue(USERS_PATH.toFile(), users2);
      }
 
 
@@ -92,7 +174,6 @@ public class CustomerListController {
                    }
             }
         }
-
         return items;
     }
 
@@ -102,6 +183,7 @@ public class CustomerListController {
         users = objectMapper.readValue(USERS_PATH.toFile(),
                 new TypeReference<List<User>>() {
                 });
+
     }
 
     public void backToAdminView(ActionEvent event) throws IOException {
@@ -112,7 +194,6 @@ public class CustomerListController {
 
         window.setScene(view2);
         window.show();
+
     }
-
-
 }
