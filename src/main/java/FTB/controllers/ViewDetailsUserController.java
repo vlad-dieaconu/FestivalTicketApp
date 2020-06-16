@@ -119,6 +119,7 @@ public class ViewDetailsUserController extends User{
                     ord.add(s);
                     item2.nrOrders++;
                     item2.setOrders(ord);
+                    item2.ordersApproved.add(0);
                     item2.setAccBalance(item2.getAccBalance()-100);
                     if(item2.getNrOrders()==5){
                         Alert alert = new Alert(Alert.AlertType.INFORMATION,"No more !", ButtonType.OK);
