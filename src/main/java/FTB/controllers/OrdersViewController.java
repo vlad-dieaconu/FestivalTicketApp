@@ -9,10 +9,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -48,6 +54,79 @@ public class OrdersViewController extends User {
 
                list.setItems(items);
             }
+        }
+    }
+    public void handleMouseClick() throws IOException {
+        Stage popupWindow=new Stage();
+        readJsonData();
+
+
+        popupWindow.initModality(Modality.APPLICATION_MODAL);
+        popupWindow.setTitle("Status");
+        Button popupButton = new Button("Back to orders list");
+        Stage finalPopupWindow = popupWindow;
+
+        popupButton.setOnAction(e->finalPopupWindow.close());
+        VBox layout = new VBox(20);
+
+        HBox hbox = new HBox(10);
+
+        Button statusButton = new Button("Status");
+        statusButton.setOnAction(e->{getStatus();});
+
+        hbox.getChildren().addAll(popupButton, statusButton);
+        layout.getChildren().addAll(hbox);
+        layout.setAlignment(Pos.CENTER);
+        Scene scene1 = new Scene(layout,500,500);
+        popupWindow.setScene(scene1);
+        popupWindow.showAndWait();
+    }
+
+
+
+    public void getStatus(){
+        String status="";
+        int index = 0;
+        for(User item:users) {
+            if (item.getUsername().equals(LoginController.getUser())) {
+                //System.out.println("intrat1");
+
+                index =list.getSelectionModel().getSelectedIndex();
+
+
+                if (item.getOrdersApproved().get(index) == 2) {
+                    status = "Your order is approved";
+
+                } else if (item.getOrdersApproved().get(index) == 1) {
+                    status = "Your order was deny";
+                } else if (item.getOrdersApproved().get(index) == 0) {
+                    status = "Not reviewed yet";
+                }
+
+                Stage popupWindow = new Stage();
+                popupWindow.initModality(Modality.APPLICATION_MODAL);
+                popupWindow.setTitle("Status");
+                Label label = new Label();
+                label.setText(status);
+                Button popupButton = new Button("Back to orders list");
+                Stage finalPopupWindow = popupWindow;
+                popupButton.setOnAction(e -> finalPopupWindow.close());
+                HBox hbox = new HBox(10);
+                VBox layout = new VBox(50);
+                hbox.getChildren().addAll(popupButton);
+
+                layout.getChildren().addAll(hbox, label);
+
+                layout.setAlignment(Pos.CENTER);
+                Scene scene1 = new Scene(layout,500,500);
+
+                popupWindow.setScene(scene1);
+                popupWindow.showAndWait();
+
+            }
+
+
+
         }
     }
 
