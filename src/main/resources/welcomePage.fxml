@@ -2,15 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="nume" fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="506.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.WelcomePageController">
 
     <children>
-        <Label layoutX="356.0" layoutY="59.0" text="Welcome !">
+        <Label layoutX="246.0" layoutY="72.0" prefHeight="70.0" prefWidth="409.0" text="Festival Ticket App" textFill="WHITE">
             <font>
-                <Font name="System Bold Italic" size="36.0" />
+                <Font name="System Bold Italic" size="44.0" />
             </font>
         </Label>
         <Label layoutX="276.0" layoutY="387.0" text="The ultimate festival guide">
@@ -18,29 +19,38 @@
                 <Font name="System Bold Italic" size="24.0" />
             </font>
         </Label>
-        <Button layoutX="400.0" layoutY="182.0" mnemonicParsing="false" onAction="#changeScene" text="Login">
+        <Button layoutX="396.0" layoutY="263.0" mnemonicParsing="false" onAction="#changeScene" prefHeight="47.0" prefWidth="109.0" text="Login" textFill="#1e1e1e">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
+         <effect>
+            <InnerShadow />
+         </effect>
         </Button>
-        <Button layoutX="388.0" layoutY="310.0" mnemonicParsing="false" onAction="#changeScene2" text="Register">
+        <Button layoutX="396.0" layoutY="381.0" mnemonicParsing="false" onAction="#changeScene2" prefHeight="47.0" prefWidth="109.0" text="Register" textFill="#282828">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
+         <effect>
+            <InnerShadow />
+         </effect>
         </Button>
-        <Label layoutX="352.0" layoutY="267.0" text="Don't have an account yet ?">
+        <Label layoutX="327.0" layoutY="329.0" text="Don't have an account yet ?" textFill="WHITE">
             <font>
-                <Font name="System Bold" size="14.0" />
+                <Font name="System Bold" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="264.0" layoutY="128.0" prefHeight="18.0" prefWidth="459.0" text="Discover festivals, check lineups, get familiar with new artists ">
+        <Label layoutX="172.0" layoutY="166.0" prefHeight="30.0" prefWidth="588.0" text="Discover festivals, check lineups, get familiar with new artists " textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="20.0" />
             </font></Label>
-        <Label layoutX="264.0" layoutY="146.0" text="and easily access the info every festival lover needs to know.">
+        <Label layoutX="173.0" layoutY="206.0" text="and easily access the info every festival lover needs to know." textFill="WHITE">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="20.0" />
             </font></Label>
+
+        <Button layoutX="803.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="---" onAction="#minimizeWindow"/>
+        <Button layoutX="845.0" layoutY="7.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="X"  onAction="#closeWindow"/>
 
     </children>
 </AnchorPane>
