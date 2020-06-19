@@ -3,13 +3,36 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.AdminFestivalViewController">
+<AnchorPane id="nume8" prefHeight="506.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.AdminFestivalViewController">
    <children>
-      <TextField fx:id="Nume" layoutX="97.0" layoutY="82.0" prefHeight="41.0" prefWidth="330.0" promptText="Name" />
-      <TextArea fx:id="Detalii" layoutX="97.0" layoutY="135.0" prefHeight="200.0" prefWidth="200.0" promptText="Detalis" />
-      <Button layoutX="316.0" layoutY="188.0" mnemonicParsing="false" onAction="#backTologin" text="Back to login" />
-      <Button layoutX="319.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleAddFestAction" text="Add festival" />
+      <TextField fx:id="Nume" layoutX="40.0" layoutY="81.0" prefHeight="41.0" prefWidth="330.0" promptText="Name">
+         <effect>
+            <InnerShadow />
+         </effect></TextField>
+      <TextArea fx:id="Detalii" layoutX="100.0" layoutY="148.0" prefHeight="310.0" prefWidth="211.0" promptText="Detalis">
+         <effect>
+            <InnerShadow />
+         </effect></TextArea>
+      <Button layoutX="370.0" layoutY="417.0" mnemonicParsing="false" onAction="#backTologin" prefHeight="41.0" prefWidth="146.0" text="Back to login">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button layoutX="370.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleAddFestAction" prefHeight="41.0" prefWidth="146.0" text="Add festival">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+
+      <Button layoutX="803.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="---" />
+      <Button layoutX="845.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="39.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="X" />
    </children>
 </AnchorPane>
