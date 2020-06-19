@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import FTB.services.UserService;
+import javafx.stage.StageStyle;
 
 
 public class Main extends Application {
@@ -25,6 +26,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("welcomePage.fxml"));
         primaryStage.setTitle("Festival Tickets App");
         primaryStage.setScene(new Scene(root));
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
     }
     
