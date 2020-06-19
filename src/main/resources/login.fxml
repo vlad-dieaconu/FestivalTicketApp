@@ -4,54 +4,44 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="nume2" prefHeight="500.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.LoginController">
     <children>
-        <TextField fx:id="user_input" layoutX="572.0" layoutY="170.0" prefHeight="39.0" prefWidth="230.0" promptText="Username">
+        <TextField fx:id="user_input" layoutX="575.0" layoutY="148.0" prefHeight="39.0" prefWidth="229.0" promptText="Username">
          <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
+            <InnerShadow />
          </effect></TextField>
 
-        <PasswordField fx:id="passwordField" layoutX="572.0" layoutY="248.0" prefHeight="39.0" prefWidth="230.0" promptText="Password">
+        <PasswordField fx:id="passwordField" layoutX="575.0" layoutY="218.0" prefHeight="39.0" prefWidth="229.0" promptText="Password">
          <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
+            <InnerShadow />
          </effect></PasswordField>
 
-        <Button layoutX="624.0" layoutY="319.0" onAction="#handleLoginButtonAction" prefHeight="51.0" prefWidth="126.0" text="LOGIN">
+        <Button layoutX="641.0" layoutY="299.0" onAction="#handleLoginButtonAction" prefHeight="39.0" prefWidth="94.0" text="Login">
          <font>
-            <Font name="System Bold Italic" size="24.0" />
-         </font></Button>
-      <Label layoutX="521.0" layoutY="67.0" text="Time to LOGIN !" textFill="WHITE">
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Label layoutX="552.0" layoutY="62.0" text="Time to LOGIN !" textFill="#dad5d5">
          <font>
-            <Font name="System Bold Italic" size="40.0" />
+            <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Button layoutX="35.0" layoutY="418.0" mnemonicParsing="false" onAction="#backToWelcome" prefHeight="51.0" prefWidth="103.0" text="Back">
+      <Button layoutX="641.0" layoutY="389.0" mnemonicParsing="false" onAction="#backToWelcome" prefHeight="44.0" prefWidth="94.0" text="Back">
          <font>
-            <Font name="System Bold" size="24.0" />
-         </font></Button>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
 
-        <Button layoutX="803.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="---" textFill="WHITE" />
-        <Button layoutX="845.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="39.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="X" textFill="WHITE" />
+        <Button layoutX="803.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="---" />
+        <Button layoutX="845.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="39.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="X" />
 
 
     </children>

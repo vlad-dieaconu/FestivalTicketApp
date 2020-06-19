@@ -2,17 +2,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.AdminViewController">
+<AnchorPane id="nume10" prefHeight="506.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.AdminViewController">
    <children>
-      <Button layoutX="258.0" layoutY="175.0" mnemonicParsing="false" onAction="#addFestivals" text="Add Festivals" />
-      <Button layoutX="258.0" layoutY="240.0" mnemonicParsing="false" onAction="#backTologin" text="Back to login" />
-      <Label layoutX="221.0" layoutY="116.0" text="Add more festivals !">
+      <Button layoutX="365.0" layoutY="154.0" mnemonicParsing="false" onAction="#addFestivals" prefHeight="44.0" prefWidth="152.0" text="Add Festivals">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button layoutX="365.0" layoutY="253.0" mnemonicParsing="false" onAction="#backTologin" text="Back to login">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Label layoutX="281.0" layoutY="63.0" text="Add more festivals !">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
+
+      <Button layoutX="803.0" layoutY="14.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="---" />
+      <Button layoutX="845.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="39.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="X" />
    </children>
 </AnchorPane>

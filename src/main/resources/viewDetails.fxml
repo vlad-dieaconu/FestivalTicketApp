@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.ViewDetailsUserController">
+<AnchorPane id="nume4" prefHeight="506.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FTB.controllers.ViewDetailsUserController">
     <children>
         <ListView fx:id="listView" layoutX="38.0" layoutY="54.0" onMouseClicked="#handleMouseClick" prefHeight="250.0" prefWidth="291.0" />
         <Label layoutX="90.0" layoutY="7.0" text="Choose your festival !">
@@ -15,4 +15,7 @@
         <ScrollBar layoutX="314.0" layoutY="54.0" orientation="VERTICAL" prefHeight="249.0" prefWidth="14.0" />
       <Button onAction="#back" layoutX="433.0" layoutY="279.0" mnemonicParsing="false" text="Back" />
     </children>
+
+    <Button layoutX="803.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0" style="-fx-background-color: transparent;" text="---" onAction="#minimizeWindow"/>
+    <Button layoutX="845.0" layoutY="7.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="X"  onAction="#closeWindow"/>
 </AnchorPane>
