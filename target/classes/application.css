@@ -1,3 +1,33 @@
 #nume {
-    -fx-background-image:url('background.jpg');
+    -fx-background-image:url('welcome.jpg');
+}
+#nume2 {
+    -fx-background-image:url('login.jpg');
+}
+#nume3 {
+    -fx-background-image: url('userview.jpg');
+}
+#nume4 {
+    -fx-background-image:url('viewdetails.jpg');
+}
+#nume5 {
+    -fx-background-image:url('ordersview.jpg');
+}
+#nume6 {
+    -fx-background-image:url('adminview.jpg');
+}
+#nume7 {
+    -fx-background-image:url('editfestivals.jpg');
+}
+#nume8 {
+    -fx-background-image:url('addfestivals.jpg');
+}
+#nume9 {
+    -fx-background-image:url('buyerslist.jpg');
+}
+#nume10 {
+    -fx-background-image:url('adminfestivalview.jpg');
+}
+#nume11 {
+    -fx-background-image:url('register.jpg');
 }
