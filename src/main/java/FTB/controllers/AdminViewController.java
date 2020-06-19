@@ -66,7 +66,15 @@ public class AdminViewController {
         window.show();
     }
 
+    public void minimizeWindow(javafx.event.ActionEvent min) {
+        Stage window = (Stage) ((Node)min.getSource()).getScene().getWindow();
+        window.setIconified(true);
+    }
 
+    public void closeWindow(javafx.event.ActionEvent close) {
+        Stage window = (Stage) ((Node)close.getSource()).getScene().getWindow();
+        window.close();
+    }
 
 
 
