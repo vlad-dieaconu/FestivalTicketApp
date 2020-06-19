@@ -23,17 +23,17 @@ import java.io.IOException;
 public class RegisterController {
 
     @FXML
-    private Text registrationMessage;
+    Text registrationMessage;
     @FXML
-    private PasswordField passwordField;
+    PasswordField passwordField;
     @FXML
-    private TextField usernameField;
+    TextField usernameField;
     @FXML
-    private TextField email;
+    TextField email;
     @FXML
-    private TextField age;
+    TextField age;
     @FXML
-    private ChoiceBox role;
+    ChoiceBox role;
 
     @FXML
     public void initialize() {
@@ -62,7 +62,6 @@ public class RegisterController {
         window.setScene(view2);
         window.show();
     }
-
     public void minimizeWindow(javafx.event.ActionEvent min) {
         Stage window = (Stage) ((Node)min.getSource()).getScene().getWindow();
         window.setIconified(true);
@@ -72,4 +71,5 @@ public class RegisterController {
         Stage window = (Stage) ((Node)close.getSource()).getScene().getWindow();
         window.close();
     }
+
 }
