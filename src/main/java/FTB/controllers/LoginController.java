@@ -37,6 +37,7 @@ public class LoginController {
         try {
             UserService.checkUser(user_input.getText(), passwordField.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION,"Login reusit !", ButtonType.OK);
+            loginMessage.setText("Login reusit !");
             alert.showAndWait();
             if(alert.getResult()==ButtonType.OK)
                 alert.close();
@@ -63,26 +64,30 @@ public class LoginController {
 
 
     } catch (InvalidUsername e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING,e.getMessage(), ButtonType.OK);
-            alert.showAndWait();
-            if(alert.getResult()==ButtonType.OK)
-                alert.close();
+            loginMessage.setText("Your username is incorrect");
+          Alert alert = new Alert(Alert.AlertType.WARNING,e.getMessage(), ButtonType.OK);
+           alert.showAndWait();
+           if(alert.getResult()==ButtonType.OK)
+              alert.close();
 
         } catch (InvalidPassword e) {
+            loginMessage.setText("Your password is wrong!");
             Alert alert = new Alert(Alert.AlertType.WARNING,e.getMessage(), ButtonType.OK);
             alert.showAndWait();
             if(alert.getResult()==ButtonType.OK)
-                alert.close();
+              alert.close();
         } catch (EmptyPassword e) {
+            loginMessage.setText("Please enter a password!");
             Alert alert = new Alert(Alert.AlertType.WARNING,e.getMessage(), ButtonType.OK);
             alert.showAndWait();
             if(alert.getResult()==ButtonType.OK)
                 alert.close();
         } catch (UserEmpty e) {
+            loginMessage.setText("Please enter an username!");
             Alert alert = new Alert(Alert.AlertType.WARNING,e.getMessage(), ButtonType.OK);
             alert.showAndWait();
             if(alert.getResult()==ButtonType.OK)
-                alert.close();
+             alert.close();
         }
 
     }
