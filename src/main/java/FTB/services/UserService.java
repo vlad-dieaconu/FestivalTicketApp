@@ -19,8 +19,10 @@ import java.util.Objects;
 
 public class UserService {
 
-    private static List<User> users;
-    public static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+    static List<User> users;
+    public static  Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
+
+
 
     public static void loadUsersFromFile() throws IOException {
 
@@ -67,7 +69,7 @@ public class UserService {
 
     }
 
-    private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException{
+    static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException{
         for (User user : users) {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
@@ -92,7 +94,7 @@ public class UserService {
         }
     }
 
-    private static String encodePassword(String salt, String password) {
+    static String encodePassword(String salt, String password) {
         MessageDigest md = getMessageDigest();
         md.update(salt.getBytes(StandardCharsets.UTF_8));
 
@@ -111,6 +113,10 @@ public class UserService {
             throw new IllegalStateException("SHA-512 does not exist!");
         }
         return md;
+    }
+
+    public static List<User> getUsers(){
+        return users;
     }
 
 }
