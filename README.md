@@ -13,5 +13,5 @@
 
 ## Authors
 
-* Vivian Gherasim 
+* Viviana Gherasim 
 * Vlad Dieaconu
