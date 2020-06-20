@@ -20,9 +20,9 @@ import FTB.model.Festival;
 public class AdminFestivalViewController {
 
     @FXML
-    private  TextField Nume;
+    TextField Nume;
     @FXML
-    private  TextArea Detalii;
+    TextArea Detalii;
 
 
 
