@@ -17,8 +17,8 @@ import java.util.Objects;
 
 public class FestivalService {
 
-    private static List<Festival> festivals;
-    public static final Path FESTIVALS_PATH = FestivalFileService.getPathToFile("config", "festival.json");
+    static List<Festival> festivals;
+    public static  Path FESTIVALS_PATH = FestivalFileService.getPathToFile("config", "festival.json");
 
     public static void loadFestivalsFromFile() throws IOException {
 
@@ -31,7 +31,7 @@ public class FestivalService {
         festivals = objectMapper.readValue(FESTIVALS_PATH.toFile(),
                 new TypeReference<List<Festival>>() {
                 });
-}
+    }
 
     public static void addFestivals(String name, String details){
 

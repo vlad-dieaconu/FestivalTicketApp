@@ -75,12 +75,12 @@ public class UserService {
                 throw new UsernameAlreadyExistsException(username);
         }
     }
-    private static void checkUserIsNotEmpty(String username)throws UserEmpty {
+    static void checkUserIsNotEmpty(String username)throws UserEmpty {
         if(Objects.equals(username, ""))
             throw new UserEmpty(username);
     }
 
-    private static void checkPassIsNotEmpty(String password)throws EmptyPassword {
+    static void checkPassIsNotEmpty(String password)throws EmptyPassword {
         if(Objects.equals(password,""))
             throw new EmptyPassword(password);
     }
