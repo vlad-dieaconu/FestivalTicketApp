@@ -1,12 +1,12 @@
 package FTB.services;
 
+import FTB.exceptions.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import FTB.exceptions.UsernameAlreadyExistsException;
 import FTB.model.User;
 
 import java.io.IOException;
@@ -16,6 +16,11 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class UserServiceTest {
+
+    private static final String USER_EMPTY="";
+    private static final String PASS_EMPTY="";
+    private UserService userService;
+
 
     @BeforeClass
     public static void setupClass() {
@@ -92,8 +97,17 @@ public class UserServiceTest {
         assertNotEquals("testPass1", UserService.encodePassword("username1", "testPass1"));
     }
 
-    @Test
-    public void testCheckUser(){
+    @Test(expected = UserEmpty.class)
+    public void testCheckUserIsNotEmpty() throws UserEmpty {
+        UserService.checkUserIsNotEmpty(USER_EMPTY);
+        assertEquals("Please enter an username!",UserEmpty.class);
 
     }
+    @Test(expected = EmptyPassword.class)
+    public void testcheckPassIsNotEmpty() throws EmptyPassword{
+        UserService.checkPassIsNotEmpty(PASS_EMPTY);
+        assertEquals("Please enter a password!",EmptyPassword.class);
+    }
+
+
 }
